@@ -26,6 +26,17 @@ docker save ovpn-container > ovpn-container.tar
 
 Upload `ovpn-container.tar` to your router
 
+Setup containers network
+
+```shell
+/interface/bridge/add name=dockers
+/interface/veth/add address=192.168.121.2/24 gateway=192.168.121.1 name=veth1
+/interface/bridge/port/add bridge=dockers interface=veth1
+/interface/list/member/add interface=dockers list=LAN
+/ip/address/add address=192.168.121.1/24 interface=dockers network=192.168.121.0
+/ip/firewall/nat/add action=masquerade chain=srcnat src-address-list=192.168.121.0/24
+```
+
 Setup routing
 
 ```shell
