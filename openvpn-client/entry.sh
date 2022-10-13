@@ -9,7 +9,7 @@ sysctl -w net.ipv4.ip_forward=1
 /sbin/iptables -A FORWARD -i eth0 -o tap0 -j ACCEPT
 
 while sleep 50; do
-  t=$(ping -c 10 service.company.internal.net | grep -o -E '[0-9]+ packets r' | grep -o -E '[0-9]+')
+  t=$(ping -c 10 service.home.internal.net | grep -o -E '[0-9]+ packets r' | grep -o -E '[0-9]+')
   if [ "$t" -eq 0 ]; then
     pkill -f openvpn
     /usr/sbin/openvpn --config /root/config.ovpn &

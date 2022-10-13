@@ -12,6 +12,8 @@ Setup container on RouterOS. See details [here](https://help.mikrotik.com/docs/d
 
 Replace `config.ovpn` and `config.pass` with your own files.
 
+Replace `service.home.internal.net` in `entry.sh` for some host in your home network. This used for restart connection if it's down.
+
 Build image:
 ```shell
 docker buildx build  --no-cache --platform linux/arm/v7 -t ovpn-container .
